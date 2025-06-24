@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalhando com alert</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    function Alert3() {
+
+      function handleAlertClick(e) {
+        alert(e.target.previousSibling.value)
+
+        // esvaziando campo de texto
+        e.target.previousSibling.value = ''
+      }
+
+      function handleInputChange(e) {
+
+        console.log(e.target.value)
+
+      }
+
+      return (
+        <div class="border-gray-800 bg-slate-500 ">
+          <input type="text" class="border-red-600 bg-white m-5  p-3 rounded-md"
+            onChange={handleInputChange}
+            placeholder="Digite laguma coisa..." />
+          <button class="bg-blue-700 p-3 rounded-xl border-l-rose-900 text-white" type="button" onClick={handleAlertClick}>Mostrar alerta com o campo de texto</button>
+        </div>
+
+      )
+
+    }
+
+
+    // componente principal
+
+    function App() {
+      return (
+        <main class="p-3">
+          <Alert3 />
+        </main>
+
+      )
+    }
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+</body>
+
+</html>
