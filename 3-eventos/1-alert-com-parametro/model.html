@@ -23,25 +23,25 @@
 
   <script type="text/babel">
 
-    function Alert1() {
+    // mostrar alerta com parametro
 
-      function handleAlertClick(){
-        alert('Uma mensagem de alerta')
-      }
+   function Alert2(){
 
-      return (
-        <button class="bg-slate-600 p-3 rounded-xl border-l-rose-900" type="button" onClick={handleAlertClick}>Mostrar alerta</button>
-      )
-
+    function handleAlertMessage(msg){
+      alert(msg)
     }
+
+    return(
+      <button type="button" class="bg-slate-950 text-white p-5 " onClick={() => handleAlertMessage('uma mensagem de alerta, com parametros.')}>Alert message !</button>
+    )
+   }
 
 
     // componente principal
-
     function App(){
       return(
          <main class="p-3">
-        <Alert1 />
+        <Alert2 />
       </main>
       
       )
