@@ -13,7 +13,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-blue-600">
   <div id="root"></div>
 
 
@@ -23,13 +23,31 @@
 
   <script type="text/babel">
 
+    function MudarCorDeFundo() {
+      const [fundo, setFundo] = React.useState(false)
 
+      //funcionalidade para mudar cor de fundo
+      function setFundoClaro() {
+        setFundo(false)
+      }
+
+      function setFundoEscuro() {
+        setFundo(true)
+      }
+
+      return (
+        <div className={`${fundo ? 'bg-gray-800' : 'bg-white'} p-5 w-full flex gap-5 items-center justify-center h-100 m-auto`}>
+          <button className="bg-blue-200 p-3 rounded-sm" onClick={setFundoClaro}>Fundo claro</button>
+          <button className="bg-gray-500 text-white p-3 rounded-sm" onClick={setFundoEscuro}>Fundo Escuro</button>
+        </div>
+      )
+    }
 
     // componente principal
     function App() {
       return (
         <main className="p-3">
-          
+          <MudarCorDeFundo />
         </main>
 
       )

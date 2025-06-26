@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalhando com Lista de tarefas</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    function Formulario() {
+
+      const [nomeForm, setNomeForm] = React.useState('')
+      const [nomeExibido, setNomeExibido] = React.useState('')
+
+      // funcionalidade de cpaturar o nome do usuario
+      function capuraNome(nome) {
+        setNomeExibido(nomeForm)
+        setNomeForm('')
+      }
+
+
+      return (
+        <div className="p-20 flex flex-col items-center justify-center bg-violet-500 m-auto w-200 h-100">
+          <div className="flex ">
+            <input
+              onChange={(e) => setNomeForm(e.target.value)}
+              value={nomeForm}
+              type="text"
+              className="bg-gray-100 mr-5 p-3 rounded-sm"
+              placeholder="Qual seu nome ?" />
+            <button onClick={capuraNome} className="bg-white p-3 rounded-sm">Enviar</button>
+          </div>
+
+          <div  className="mt-5">
+            {nomeExibido && (
+              <div className="bg-white p-4 rounded-sm">
+                <p>Seu nome é: <strong>{nomeExibido}</strong></p>
+              </div>
+            )}
+          </div>
+
+
+        </div>
+      )
+    }
+
+
+    // componente principal
+    function App() {
+      return (
+        <main className="p-3">
+          <Formulario />
+        </main>
+
+      )
+    }
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+</body>
+
+</html>
