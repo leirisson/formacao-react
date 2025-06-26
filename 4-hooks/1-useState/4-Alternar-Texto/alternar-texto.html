@@ -24,23 +24,23 @@
   <script type="text/babel">
 
     // use states
-    function Counter() {
-      const [counter, setCounter] = React.useState(0)
+    function ShowButton() {
+      const [alterna, setAlterna] = React.useState(false)
 
       return (
         <>
-          <p class="m-5 ">Contador: {counter}</p>
-          <button class="bg-slate-600 text-white p-2 align-middle rounded-md" onClick={
-            () => setCounter((preValue) => preValue + 1)}>
-            incrementar
+        {
+          alterna ? <p className="m-5 bg-blue-500 rounded-md text-center w-sm p-3">Exibindo conteudo</p> : <p className="m-5 bg-red-400 rounded-md text-center w-sm p-3">Conteudo oculto.</p>
+        }
+   
+          <button className="bg-slate-600 text-white p-5 m-5 align-middle rounded-md" onClick={ () => setAlterna(true)}>
+            Exibir
           </button>
-          <button class="bg-red-700 text-white p-2 rounded-md m-5" onClick={
-            () => setCounter((preValue) => preValue - 1)}>
-            Decrementar
+          <button className="bg-red-700 text-white p-5 rounded-md m-5" onClick={
+            () =>  setAlterna(false)}>
+            Esconder
           </button>
-          <button class="bg-green-800 text-white p-2 rounded-md m-5" onClick={() => setCounter(0)}>
-            Resetar
-          </button>
+ 
 
         </>
         
@@ -53,7 +53,7 @@
     function App() {
       return (
         <main class="p-3">
-          <Counter />
+          <ShowButton />
         </main>
 
       )
