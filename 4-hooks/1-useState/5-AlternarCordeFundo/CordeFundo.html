@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalhando com Lista de tarefas</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+
+    function ListaDeTarefas() {
+      const [novaTarefa, setNovaTarefa] = React.useState('')
+      const [tarefas, setTarefas] = React.useState([])
+
+
+      //funcionalidade para adicionar tarefas
+      const adicionarTarefa = () => {
+        if (novaTarefa.trim()) {
+          setTarefas([...tarefas, novaTarefa])
+          setNovaTarefa('')
+        }
+      }
+
+      
+      //funcionalidade para remover uma tarefa
+      const removerTarefa = (index) => {
+        const novasTarefas = tarefas.filter((_, i) => i !== index)
+        setTarefas(novasTarefas)
+      }
+
+
+
+      return (
+        <div className="m-auto p-5 flex flex-col items-center gap-4 justify-center" >
+          <div className="flex justify-center ">
+            <input
+              onChange={(e) => setNovaTarefa(e.target.value)}
+              value={novaTarefa}
+              type="text"
+              className="p-3 bg-gray-300 mr-3 rounded-md"
+              placeholder="Adicione uma tarefa" />
+            <button
+              onClick={adicionarTarefa}
+              className="bg-green-700 p-3 rounded text-white bold text-center text-2xl"
+            >
+              +
+            </button>
+          </div>
+
+
+         { /* funcionalidade para lista as tarefas na tela */}
+          <ul className="w-full max-w-md">
+            {tarefas.map((tarefa, index) => (
+              <li key={index} className="flex justify-between items-center p-3 mb-2 text-white bg-gray-400 rounded">
+                {index + 1}º -  {tarefa}
+
+                <button
+                  onClick={() => removerTarefa(index)}
+                  className="text-red-700 font-bold bg-white p-1 rounded-sm"
+                >X</button>
+              </li>
+            ))}
+          </ul>
+
+
+        </div>
+      )
+    }
+
+
+    // componente principal
+    function App() {
+      return (
+        <main className="p-3">
+          <ListaDeTarefas />
+        </main>
+
+      )
+    }
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+</body>
+
+</html>
