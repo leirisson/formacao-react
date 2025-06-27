@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalhando com fiter de produtos</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+
+<body class="bg-gray-200/25">
+  <div id="root"></div>
+
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    function ListaProdutos() {
+      const [produtos] = React.useState([
+        {
+          id: 1,
+          img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12",
+          descricao: "Smartphone Galaxy S21 Ultra 5G",
+          preco: 4599.99,
+          estoque: 150
+        },
+        {
+          id: 2,
+          img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45",
+          descricao: "Notebook Dell XPS 13",
+          preco: 6899.90,
+          estoque: 75
+        },
+        {
+          id: 3,
+          img: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6",
+          descricao: "Fone de Ouvido Sony WH-1000XM4",
+          preco: 1499.50,
+          estoque: 200
+        },
+        {
+          id: 4,
+          img: "https://images.unsplash.com/photo-1592155931584-901ac15763e3",
+          descricao: "Câmera Canon EOS R5",
+          preco: 18999.00,
+          estoque: 30
+        },
+        {
+          id: 5,
+          img: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7",
+          descricao: "Smartwatch Apple Watch Series 7",
+          preco: 3299.00,
+          estoque: 120
+        }
+      ])
+      const [search, setSearch] = React.useState("")
+
+
+
+      return (
+        <>
+          <ul className="flex flex-wrap justify-center items-center gap-3">
+            <input type="text"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              className="p-5 text-white bg-blue-950" />
+            {
+              produtos
+                .filter(produto => produto.descricao.toLowerCase().includes(search))
+                .map(produto => (
+                  <li key={produto.id} className="bg-white flex flex-col justify-center rounded-md  p-5 w-100 ">
+                    <img src={produto.img} className="w-80 h-80 self-center" alt={produto.descricao} />
+                    <div>
+                      <p><span className="font-bold">Descrição: </span>{produto.descricao}</p>
+                      <p>
+                        <span className="font-bold"> Preço:</span>
+                        {produto.preco}</p>
+                      <p>
+                        <span className="font-bold">Estoque:</span>
+                        {produto.estoque}</p>
+                    </div>
+                  </li>
+                ))
+            }
+          </ul>
+
+        </>
+      )
+
+
+
+    }
+
+
+
+    // componente principal
+    function App() {
+      return (
+        <main className="p-3">
+          <ListaProdutos />
+        </main>
+
+      )
+    }
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+</body>
+
+</html>
